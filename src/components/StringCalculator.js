@@ -15,7 +15,8 @@ const StringCalculator = () => {
   const calculateSum = () => {
     try {
       setError(null);
-      const result = addNumbersFromString(numbersInput);
+      const formattedInput = numbersInput.replace(/\\n/g, "\n");
+      const result = addNumbersFromString(formattedInput);
       setResult(result);
     } catch (e) {
       setError(e.message);

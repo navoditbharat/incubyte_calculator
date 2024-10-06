@@ -39,4 +39,17 @@ describe("String Calculator UI tests", () => {
     const errorMessage = screen.getByText(/negative numbers not allowed/i);
     expect(errorMessage).toBeInTheDocument();
   });
+
+  test("displays the correct sum when custom delimiter is used", () => {
+    render(<StringCalculator />);
+
+    const input = screen.getByPlaceholderText(/enter numbers with delimiters/i);
+    const button = screen.getByRole("button", { name: /calculate/i });
+
+    fireEvent.change(input, { target: { value: "//:\\n1:2:3:4" } });
+    fireEvent.click(button);
+
+    const resultMessage = screen.getByText(/result: 10/i);
+    expect(resultMessage).toBeInTheDocument();
+  });
 });
