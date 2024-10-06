@@ -10,12 +10,15 @@ import { addNumbersFromString } from "../helpers/calculatorHelper";
 const StringCalculator = () => {
   const [numbersInput, setNumbersInput] = useState("");
   const [result, setResult] = useState(null);
+  const [error, setError] = useState(null);
 
   const calculateSum = () => {
     try {
+      setError(null);
       const result = addNumbersFromString(numbersInput);
       setResult(result);
     } catch (e) {
+      setError(e.message);
       setResult(null);
     }
   };
@@ -40,6 +43,12 @@ const StringCalculator = () => {
       {result !== null && (
         <div style={{ marginTop: "20px" }}>
           <Message severity="success" text={`Result: ${result}`} />
+        </div>
+      )}
+
+      {error && (
+        <div style={{ marginTop: "20px" }}>
+          <Message severity="error" text={error} />
         </div>
       )}
     </div>
