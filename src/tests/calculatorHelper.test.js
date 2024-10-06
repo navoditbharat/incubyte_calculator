@@ -36,4 +36,10 @@ describe("String Calculator", () => {
   test("should handle custom delimiter", () => {
     expect(addNumbersFromString("//;\n1;2;3")).toBe(6);
   });
+
+  test("should throw an error if any negative numbers are found with custom delimiter", () => {
+    expect(() => addNumbersFromString("//;\n1;-2;3")).toThrow(
+      "Negative numbers not allowed: -2"
+    );
+  });
 });
