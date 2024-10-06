@@ -18,15 +18,17 @@ describe("String Calculator", () => {
   });
 
   test("should handle newlines between numbers as valid delimiters", () => {
-    expect(add("1\n2,3")).toBe(6);
+    expect(addNumbersFromString("1\n2,3")).toBe(6);
   });
 
   test("should throw an error for negative numbers", () => {
-    expect(() => add("1,-2,3")).toThrow("Negative numbers not allowed: -2");
+    expect(() => addNumbersFromString("1,-2,3")).toThrow(
+      "Negative numbers not allowed: -2"
+    );
   });
 
   test("should list all negative numbers in the error message", () => {
-    expect(() => add("1,-2,-3")).toThrow(
+    expect(() => addNumbersFromString("1,-2,-3")).toThrow(
       "Negative numbers not allowed: -2, -3"
     );
   });
